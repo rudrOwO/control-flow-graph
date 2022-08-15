@@ -10,12 +10,23 @@ const Region = () => {
 
   useLayoutEffect(() => {
     const boundingRect = regionRef.current?.getBoundingClientRect()!
-    const svgElement = d3.select("#" + lineNumbers)
-
-    svgElement
+    const svgElement = d3
+      .select("#" + lineNumbers)
       .attr("viewbox", `0 0 ${boundingRect.width} ${boundingRect.height}`)
-      .append("line")
+
+    const arrow = svgElement.append("line")
+
+    arrow
+      .attr("stroke", "black")
       .attr("stroke-width", "5%")
+      .attr("x1", 20 + 16)
+      .attr("y1", 72)
+      .attr("x2", 20 + 16)
+      .attr("y2", 72 + 50)
+
+    return () => {
+      arrow.remove()
+    }
   }, [])
 
   return (
