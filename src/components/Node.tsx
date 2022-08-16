@@ -1,23 +1,27 @@
+export const nodeMargin = 40
+export const nodeDimension = 60
+
 const Node = () => {
   return (
     <div
       style={{
-        width: "2rem",
-        height: "2rem",
-        margin: 50,
+        width: nodeDimension,
+        height: nodeDimension,
+        margin: nodeMargin,
         marginTop: 0,
-        padding: 20,
         borderRadius: "50%",
         background: "#007add",
         aspectRatio: "1",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        fontSize: 15,
+        display: "grid",
+        placeContent: "center",
+        color: "#eeeeee",
+        fontFamily: "Helvetica, Arial, sans-serif",
+        fontSize: 16,
+        fontWeight: "bold",
         zIndex: 2,
       }}
     >
-      1...2
+      1-2
     </div>
   )
 }

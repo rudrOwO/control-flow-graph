@@ -1,15 +1,14 @@
 import { useCallback, useLayoutEffect, useEffect, useRef } from "react"
-import Node from "./Node"
+import Node, { nodeDimension, nodeMargin } from "./Node"
 import * as d3 from "d3"
 
 const lineNumbers = "line1-2"
 
 const Region = () => {
   const regionRef = useRef<HTMLDivElement>(null)
-  const svgRef = useRef<SVGSVGElement>(null)
 
   useLayoutEffect(() => {
-    const boundingRect = regionRef.current?.getBoundingClientRect()!
+    const boundingRect = regionRef.current!.getBoundingClientRect()!
     const svgElement = d3
       .select("#" + lineNumbers)
       .attr("viewbox", `0 0 ${boundingRect.width} ${boundingRect.height}`)
@@ -18,11 +17,11 @@ const Region = () => {
 
     arrow
       .attr("stroke", "black")
-      .attr("stroke-width", "5%")
-      .attr("x1", 20 + 16)
-      .attr("y1", 72)
-      .attr("x2", 20 + 16)
-      .attr("y2", 72 + 50)
+      .attr("stroke-width", 2)
+      .attr("x1", boundingRect.width / 2)
+      .attr("y1", nodeDimension)
+      .attr("x2", boundingRect.width / 2)
+      .attr("y2", boundingRect.height - (nodeDimension + nodeMargin))
 
     return () => {
       arrow.remove()
@@ -41,19 +40,18 @@ const Region = () => {
     >
       <Node />
       <Node />
-
+      <Node />
+      <Node />
+      <Node />
       <svg
-        ref={svgRef}
-        id={lineNumbers}
         xmlns="http://www.w3.org/2000/svg"
+        id={lineNumbers}
         style={{
           position: "absolute",
           width: "100%",
           height: "100%",
         }}
-      >
-        <path d="L 100 100" stroke="black" />
-      </svg>
+      />
     </div>
   )
 }
