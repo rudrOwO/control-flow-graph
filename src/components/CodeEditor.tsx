@@ -1,5 +1,7 @@
 import Editor, { EditorProps, OnMount, Monaco } from "@monaco-editor/react"
 import { useCallback, useRef, useState } from "react"
+import { Flex, Box } from "@chakra-ui/react"
+import EditorBar from "./EditorBar"
 
 interface CodeEditorProps extends EditorProps {}
 
@@ -17,15 +19,16 @@ const CodeEditor = (props: CodeEditorProps) => {
     const editor = editorRef.current!
     const val = editor.getValue()
 
-    for (let c of val) {
-      console.log(c)
-    }
+    console.log(val)
   }
 
   return (
-    <>
-      <Editor height="100%" language="c" onMount={editorDidMount} />
-    </>
+    <Flex w="100%" flexDirection="column">
+      <EditorBar onClick={() => {}} />
+      <Box flexGrow={1}>
+        <Editor height="100%" language="c" onMount={editorDidMount} />
+      </Box>
+    </Flex>
   )
 }
 
