@@ -1,20 +1,19 @@
-import CFGButton from "./CFGButton"
-import { Center } from "@chakra-ui/react"
-import { MutableRefObject, useEffect } from "react"
+import { Box } from "@chakra-ui/react"
+import { useEffect } from "react"
 
 interface CFGProps {
-  editorRef: MutableRefObject<any>
+  code: string
 }
 
-const CFG = ({ editorRef }: CFGProps) => {
+const CFG = ({ code }: CFGProps) => {
   useEffect(() => {
-    setTimeout(() => console.log(editorRef.current.getValue()), 200)
-  }, [])
+    // TODO call generateCFG script from lib/ here
+  })
 
   return (
-    <Center>
-      <CFGButton />
-    </Center>
+    <Box>
+      <pre>{code}</pre>
+    </Box>
   )
 }
 

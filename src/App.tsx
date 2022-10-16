@@ -8,7 +8,7 @@ const App = () => {
 
   return (
     <Flex w="100vw" h="100vh" bg="#fffffe">
-      <Flex borderRight="1px solid black" flex={1} position="relative">
+      <Flex borderRight="1px solid #444444" flex={1} position="relative">
         <CodeEditor ref={editorRef} />
       </Flex>
       <Flex flex={1}>
