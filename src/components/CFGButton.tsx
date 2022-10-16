@@ -10,13 +10,9 @@ const CFGButton = (props: CFGButtonProps) => {
   return (
     <Button
       mx="20px"
-      p="8px"
-      variant="unstyled"
-      bg="red.500"
+      p="10px"
+      colorScheme="teal"
       fontSize="md"
-      _hover={{
-        background: "red.600",
-      }}
       onClick={handleClick}
     >
       Create CFG
