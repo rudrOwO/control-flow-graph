@@ -17,7 +17,6 @@ const CFGButton = (props: CFGButtonProps) => {
       _hover={{
         background: "red.600",
       }}
-      zIndex={3}
       onClick={handleClick}
     >
       Create CFG

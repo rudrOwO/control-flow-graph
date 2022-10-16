@@ -1,9 +1,6 @@
-import { Flex, Text, Image, Center } from "@chakra-ui/react"
-import CFGButton, { CFGButtonProps } from "./CFGButton"
+import { Flex, Image } from "@chakra-ui/react"
 
-const EditorBar = (props: CFGButtonProps) => {
-  const { onClick: handleClick } = props
-
+const EditorBar = () => {
   return (
     <Flex
       shadow="md"
@@ -15,13 +12,10 @@ const EditorBar = (props: CFGButtonProps) => {
       width="100%"
       bg="blue.500"
       alignItems="center"
-      justifyContent="space-between"
+      justifyContent="center"
     >
-      <Image src="/c-logo.png" h="40px" ml="10px" />
-      <Center p="5px" zIndex={2} position="absolute" w="full">
-        Code Editor
-      </Center>
-      <CFGButton onClick={handleClick} />
+      <Image src="/c-logo.png" h="35px" mx="5px" />
+      Code Editor
     </Flex>
   )
 }
