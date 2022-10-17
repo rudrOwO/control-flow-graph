@@ -1,4 +1,4 @@
-import { Node, IfElseNode } from "./Node"
+import { Node } from "./Node"
 
 let lines: Array<string>
 let startNode: Node
@@ -15,6 +15,8 @@ function generateCFG(code: string): string {
 
   makeGraph(1, lines.length, startNode, endNode)
 
+  // TODO return startNode.renderToMermaid()
+  console.log(startNode)
   return ""
 }
 
@@ -23,29 +25,34 @@ function makeGraph(firstLine: number, lastLine: number, entryNode: Node, exitNod
   entryNode.addChild(currentNode)
 
   for (let i = firstLine; i < lastLine; i++) {
-    if (lines[i].includes("if")) {
-      // NOTE handles both if and if-else
+    if (
+      lines[i].includes("if") ||
+      lines[i].includes("while") ||
+      lines[i].includes("for") ||
+      lines[i].includes("do")
+    ) {
+      const startNode = new Node(i.toString() + ", ")
+      currentNode.addChild(startNode)
+      let endLine = findClosingBrace(i) // where the conditional block ends
+      const endNode = new Node(endLine.toString() + ", ")
+      makeGraph(i + 1, endLine, startNode, endNode)
 
-      const ifNode = new IfElseNode(i.toString() + ", ")
-      currentNode.addChild(ifNode)
-      let fiLine = findClosingBrace(i) // where the conditional block ends
-      const fiNode = new IfElseNode(fiLine.toString() + ", ")
-      makeGraph(i + 1, fiLine, ifNode, fiNode)
-
-      if (lines[fiLine].includes("else")) {
-        const newFiLine = findClosingBrace(fiLine) // Extended where the conditional block ends
-        fiNode.label = newFiLine.toString() + ", "
-        makeGraph(fiLine + 1, newFiLine, ifNode, fiNode)
+      if (lines[endLine].includes("else")) {
+        const newFiLine = findClosingBrace(endLine) // Extended where the conditional block ends
+        endNode.label = newFiLine.toString() + ", "
+        makeGraph(endLine + 1, newFiLine, startNode, endNode)
       }
 
-      currentNode = fiNode
-    } else if (lines[i].includes("while") || lines[i].includes("for")) {
-    } else if (lines[i].includes("do")) {
-      // TODO Handle Do while later
+      currentNode = endNode
+      i = endLine
+
+      // TODO program connections between entry and exit for loops
     } else {
       currentNode.label += i.toString() + ", "
     }
   }
+
+  currentNode.addChild(exitNode)
 }
 
 function findClosingBrace(firstLine: number): number {

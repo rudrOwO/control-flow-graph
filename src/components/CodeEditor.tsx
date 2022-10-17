@@ -11,9 +11,7 @@ int main(void) {
   if (i > 5) {
     printf("Greater than 5");
   } else {
-    printf("Not greater than 5");
-    while (i <= 5) {
-      i++;
+      printf("Not greater than 5");
     }
   }
 
