@@ -12,14 +12,14 @@ export class Node {
   }
 }
 
-export class IfNode extends Node {
+export class IfElseNode extends Node {
   // TODO Add method for rendering to Mermaid
 }
 
-export class WhileNode extends Node {
+export class EntryLoopNode extends Node {
   // TODO Add method for rendering to Mermaid
 }
 
-export class ForNode extends Node {
+export class ExitLoopNode extends Node {
   // TODO Add method for rendering to Mermaid
 }
