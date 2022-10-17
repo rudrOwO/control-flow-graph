@@ -1,4 +1,4 @@
-export class Node {
+export default class Node {
   label: string = ""
   // code: string
   children: Array<Node> = []
@@ -9,13 +9,6 @@ export class Node {
 
   addChild(child: Node) {
     this.children.push(child)
-  }
-
-  renderToMermaid(): string {
-    const renderString = `flowchart TD
-    `
-    // TODO Call BFS / DFS Here
-    return renderString
   }
 }
 

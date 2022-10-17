@@ -1,6 +1,6 @@
 import { Center } from "@chakra-ui/react"
 import { useEffect } from "react"
-import generateCFG from "../lib/generateCFG"
+import getCFGRender from "../lib/CFGRender"
 import mermaid from "mermaid"
 
 interface CFGProps {
@@ -19,7 +19,7 @@ const CFG = ({ code }: CFGProps) => {
 
   return (
     <Center key={code} className="mermaid" mt="10px">
-      {generateCFG(code)}
+      {getCFGRender(code)}
     </Center>
   )
 }

@@ -1,24 +1,12 @@
-import { Node } from "./Node"
+import Node from "./Node"
+import { lines } from "./CFGRender"
 
-let lines: Array<string>
-let startNode: Node
-let endNode: Node
-
-function generateCFG(code: string): string {
-  // Initialize
-  lines = [""]
-  for (const line of code.split("\n")) {
-    lines.push(line)
-  }
-  startNode = new Node("Start")
-  endNode = new Node("End")
-
-  makeGraph(1, lines.length, startNode, endNode)
-
-  return startNode.renderToMermaid()
-}
-
-function makeGraph(firstLine: number, lastLine: number, entryNode: Node, exitNode: Node) {
+export default function makeGraph(
+  firstLine: number,
+  lastLine: number,
+  entryNode: Node,
+  exitNode: Node
+) {
   let currentNode = new Node("")
   entryNode.addChild(currentNode)
 
@@ -74,5 +62,3 @@ function findClosingBrace(firstLine: number): number {
     }
   }
 }
-
-export default generateCFG
