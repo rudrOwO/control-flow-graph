@@ -1,5 +1,5 @@
-import { Box } from "@chakra-ui/react"
 import { useEffect } from "react"
+import generateCFG from "../lib/generateCFG"
 
 interface CFGProps {
   code: string
@@ -7,14 +7,10 @@ interface CFGProps {
 
 const CFG = ({ code }: CFGProps) => {
   useEffect(() => {
-    // TODO call generateCFG script from lib/ here
+    generateCFG(code)
   })
 
-  return (
-    <Box>
-      <pre>{code}</pre>
-    </Box>
-  )
+  return <div></div>
 }
 
 export default CFG

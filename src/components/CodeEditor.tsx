@@ -6,6 +6,17 @@ import EditorBar from "./EditorBar"
 export const defaultCode = `#include <stdio.h>
 
 int main(void) {
+  int i = 0;
+
+  if (i > 5) {
+    printf("Greater than 5");
+  } else {
+    printf("Not greater than 5");
+    while (i <= 5) {
+      i++;
+    }
+  }
+
   return 0;
 }`
 
