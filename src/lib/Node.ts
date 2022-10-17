@@ -11,12 +11,3 @@ export default class Node {
     this.children.push(child)
   }
 }
-
-// export class IfElseNode extends Node {
-// }
-
-// export class EntryLoopNode extends Node {
-// }
-
-// export class ExitLoopNode extends Node {
-// }
