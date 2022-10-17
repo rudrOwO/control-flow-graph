@@ -15,9 +15,7 @@ function generateCFG(code: string): string {
 
   makeGraph(1, lines.length, startNode, endNode)
 
-  // TODO return startNode.renderToMermaid()
-  console.log(startNode)
-  return ""
+  return startNode.renderToMermaid()
 }
 
 function makeGraph(firstLine: number, lastLine: number, entryNode: Node, exitNode: Node) {

@@ -20,7 +20,13 @@ const Analytics = ({ editorRef }: AnalyticsProps) => {
     <>
       <Flex w="100%" flexDirection="column">
         <AnalyticsBar />
-        <Tabs isFitted={true} variant="soft-rounded" colorScheme="teal" flexGrow={1}>
+        <Tabs
+          isFitted={true}
+          variant="soft-rounded"
+          colorScheme="teal"
+          flexGrow={1}
+          overflow="scroll"
+        >
           <TabList mx="10px">
             <Tab>Control Flow</Tab>
             <Tab>Test Cases</Tab>
@@ -28,8 +34,8 @@ const Analytics = ({ editorRef }: AnalyticsProps) => {
           <TabPanels>
             <TabPanel>
               <CFG code={code} />
-              {/* TODO put Testing Component here  */}
             </TabPanel>
+            <TabPanel>{/* TODO put Testing Component here  */}</TabPanel>
           </TabPanels>
         </Tabs>
       </Flex>

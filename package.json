@@ -14,11 +14,13 @@
     "@emotion/styled": "^11.10.4",
     "@monaco-editor/react": "^4.4.6",
     "framer-motion": "^7.5.3",
+    "mermaid": "^9.1.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0"
   },
   "devDependencies": {
+    "@types/mermaid": "^9.1.0",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.0",
