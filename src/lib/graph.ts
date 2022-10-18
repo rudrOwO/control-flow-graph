@@ -25,6 +25,9 @@ export default function makeGraph(
       }
 
       let IFExists = lines[i].includes("if")
+      let FORExists = lines[i].includes("for")
+      let WHILEExists = lines[i].includes("while")
+      let DOExists = lines[i].includes("do")
       let ELSEExists = false
 
       const startNode = new Node(i.toString() + ", ")
@@ -45,11 +48,12 @@ export default function makeGraph(
       }
 
       // TODO program connections between entry and exit
-      if (IFExists) {
+      if (IFExists || FORExists || WHILEExists) {
         if (!ELSEExists) {
           startNode.addChild(endNode)
         }
-      } else {
+      }
+      if (FORExists || WHILEExists || DOExists) {
         endNode.addChild(startNode)
       }
     } else {
