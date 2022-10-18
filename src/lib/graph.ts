@@ -1,5 +1,6 @@
 import Node from "./Node"
 import { lines } from "./CFGRender"
+import { complexity } from "./CFGRender"
 
 export default function makeGraph(
   firstLine: number,
@@ -7,6 +8,8 @@ export default function makeGraph(
   entryNode: Node,
   exitNode: Node
 ) {
+  complexity.regions++
+
   let currentNode = new Node("")
   entryNode.addChild(currentNode)
 

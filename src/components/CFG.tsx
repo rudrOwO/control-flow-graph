@@ -1,7 +1,8 @@
-import { Center } from "@chakra-ui/react"
+import { Text, Flex } from "@chakra-ui/react"
 import { useEffect } from "react"
 import getCFGRender from "../lib/CFGRender"
 import mermaid from "mermaid"
+import { complexity } from "../lib/CFGRender"
 
 interface CFGProps {
   code: string
@@ -18,9 +19,14 @@ const CFG = ({ code }: CFGProps) => {
   }, [code])
 
   return (
-    <Center key={code} className="mermaid" mt="10px">
-      {getCFGRender(code)}
-    </Center>
+    <Flex flexDirection="column" alignItems="center" mt="15px">
+      <div key={code} className="mermaid">
+        {getCFGRender(code)}
+      </div>
+      <Text mt="50px" fontSize="lg" color="black">
+        Cyclomatic Complexity: {complexity.regions}
+      </Text>
+    </Flex>
   )
 }
 

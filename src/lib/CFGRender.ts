@@ -1,11 +1,15 @@
 import Node from "./Node"
 import makeGraph from "./graph"
 
+export const complexity = {
+  regions: 0,
+}
 export let lines: Array<string>
 let renderString = `flowchart TD
     `
 
 export default function getCFGRender(code: string): string {
+  complexity.regions = 0
   lines = [""]
   const startNode = new Node("Start")
   const endNode = new Node("End")
