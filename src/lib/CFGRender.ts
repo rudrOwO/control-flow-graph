@@ -27,10 +27,13 @@ export default function getCFGRender(code: string): string {
 function DFS(node: Node) {
   for (const neighbor of node.children) {
     // append string
-    renderString += `${getNodeID(node.label)}(${node.label})-->${getNodeID(neighbor.label)}(${
-      neighbor.label
-    })
+    const sourceID = getNodeID(node.label)
+    const destinationID = getNodeID(neighbor.label)
+    const appendString = `${sourceID}(${node.label})-->${destinationID}(${neighbor.label})
     `
+    if (!renderString.includes(appendString) && sourceID !== destinationID) {
+      renderString += appendString
+    }
     DFS(neighbor)
   }
 }

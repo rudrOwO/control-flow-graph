@@ -17,17 +17,23 @@ export default function makeGraph(
       lines[i].includes("for") ||
       lines[i].includes("do")
     ) {
+      if (currentNode.label === "") {
+        currentNode.label = i.toString() + ", "
+      }
+
       const startNode = new Node(i.toString() + ", ")
       currentNode.addChild(startNode)
       let endLine = findClosingBrace(i) // where the conditional block ends
       const endNode = new Node(endLine.toString() + ", ")
       makeGraph(i + 1, endLine, startNode, endNode)
 
-      if (lines[endLine].includes("else")) {
-        const newFiLine = findClosingBrace(endLine) // Extended where the conditional block ends
-        endNode.label = newFiLine.toString() + ", "
-        makeGraph(endLine + 1, newFiLine, startNode, endNode)
-      }
+      startNode.addChild(endNode)
+
+      // if (lines[endLine].includes("else")) {
+      //   const newFiLine = findClosingBrace(endLine) // Extended where the conditional block ends
+      //   endNode.label = newFiLine.toString() + ", "
+      //   makeGraph(endLine + 1, newFiLine, startNode, endNode)
+      // }
 
       currentNode = endNode
       i = endLine
