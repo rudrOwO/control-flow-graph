@@ -47,7 +47,7 @@ export default function makeGraph(
         i = newEndLine
       }
 
-      // TODO program connections between entry and exit
+      // BUG: Remove one extra arrow for Entry-controlled loops
       if (IFExists || FORExists || WHILEExists) {
         if (!ELSEExists) {
           startNode.addChild(endNode)
@@ -64,6 +64,7 @@ export default function makeGraph(
   currentNode.addChild(exitNode)
 }
 
+// TODO: Make a better parser not dependent on Braces
 function findClosingBrace(firstLine: number): number {
   try {
     if (!lines[firstLine].includes("{")) {

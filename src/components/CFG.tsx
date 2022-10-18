@@ -13,6 +13,7 @@ mermaid.initialize({
   theme: "default",
 })
 
+// TODO: Add dynamic import for mermaid
 const CFG = ({ code }: CFGProps) => {
   useEffect(() => {
     mermaid.contentLoaded()
