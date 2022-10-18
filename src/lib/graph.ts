@@ -21,29 +21,34 @@ export default function makeGraph(
         currentNode.label = i.toString() + ", "
       }
 
+      let IFExists = lines[i].includes("if")
+      let ELSEExists = false
+
       const startNode = new Node(i.toString() + ", ")
       currentNode.addChild(startNode)
       let endLine = findClosingBrace(i) // where the conditional block ends
       const endNode = new Node(endLine.toString() + ", ")
       makeGraph(i + 1, endLine, startNode, endNode)
 
-      // if (lines[endLine].includes("else")) {
-      //   const newFiLine = findClosingBrace(endLine) // Extended where the conditional block ends
-      //   endNode.label = newFiLine.toString() + ", "
-      //   makeGraph(endLine + 1, newFiLine, startNode, endNode)
-      // }
+      currentNode = endNode
+      i = endLine
+
+      if (lines[endLine].includes("else")) {
+        ELSEExists = true
+        const newEndLine = findClosingBrace(endLine) // Extended where the conditional block ends
+        endNode.label = newEndLine.toString() + ", "
+        makeGraph(endLine + 1, newEndLine, startNode, endNode)
+        i = newEndLine
+      }
 
       // TODO program connections between entry and exit
-      if (lines[i].includes("if")) {
-        if (!lines[endLine].includes("else")) {
+      if (IFExists) {
+        if (!ELSEExists) {
           startNode.addChild(endNode)
         }
       } else {
         endNode.addChild(startNode)
       }
-
-      currentNode = endNode
-      i = endLine
     } else {
       currentNode.label += i.toString() + ", "
     }
