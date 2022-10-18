@@ -25,6 +25,8 @@ export default function getCFGRender(code: string): string {
 }
 
 function DFS(node: Node) {
+  node.isVisited = true
+
   for (const neighbor of node.children) {
     // append string
     const sourceID = getNodeID(node.label)
@@ -34,7 +36,12 @@ function DFS(node: Node) {
     if (!renderString.includes(appendString) && sourceID !== destinationID) {
       renderString += appendString
     }
-    DFS(neighbor)
+  }
+
+  for (const neighbor of node.children) {
+    if (!neighbor.isVisited) {
+      DFS(neighbor)
+    }
   }
 }
 

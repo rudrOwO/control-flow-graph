@@ -27,18 +27,23 @@ export default function makeGraph(
       const endNode = new Node(endLine.toString() + ", ")
       makeGraph(i + 1, endLine, startNode, endNode)
 
-      startNode.addChild(endNode)
-
       // if (lines[endLine].includes("else")) {
       //   const newFiLine = findClosingBrace(endLine) // Extended where the conditional block ends
       //   endNode.label = newFiLine.toString() + ", "
       //   makeGraph(endLine + 1, newFiLine, startNode, endNode)
       // }
 
+      // TODO program connections between entry and exit
+      if (lines[i].includes("if")) {
+        if (!lines[endLine].includes("else")) {
+          startNode.addChild(endNode)
+        }
+      } else {
+        endNode.addChild(startNode)
+      }
+
       currentNode = endNode
       i = endLine
-
-      // TODO program connections between entry and exit for loops
     } else {
       currentNode.label += i.toString() + ", "
     }

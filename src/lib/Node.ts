@@ -1,4 +1,5 @@
 export default class Node {
+  isVisited = false
   label: string = ""
   // code: string
   children: Array<Node> = []
