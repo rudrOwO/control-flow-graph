@@ -13,7 +13,7 @@
  - Live code editor panel
  - Regenerate new CFG on the fly
  - Cyclomatic complexity
- - Can render deeply nested CFG (_Recursion is_ :crown:)
+ - Can render deeply nested CFG
  
   #### Technologies Used
   - React
@@ -21,3 +21,4 @@
   - Monaco Editor
   - Mermaid
   
+#### :warning: Contains Bugs (Scheduled for extermination :fire:)
