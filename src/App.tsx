@@ -1,10 +1,25 @@
 import CodeEditor from "./components/CodeEditor"
 import Analytics from "./components/Analytics"
-import { Flex } from "@chakra-ui/react"
-import { useRef } from "react"
+import { Flex, useToast } from "@chakra-ui/react"
+import { useRef, useEffect } from "react"
 
 const App = () => {
+  const toast = useToast()
   const editorRef = useRef<any>(null)
+
+  useEffect(() => {
+    toast({
+      title: "Note",
+      position: "bottom",
+      description: "This project is under active development",
+      status: "warning",
+      duration: 4000,
+      isClosable: true,
+      containerStyle: {
+        fontSize: "lg",
+      },
+    })
+  }, [])
 
   return (
     <Flex w="100vw" h="100vh" bg="#fffffe">
